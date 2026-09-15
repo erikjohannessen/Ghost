@@ -159,13 +159,9 @@ export default tseslint.config([
       curly: ghostPlugin.configs.ts.rules.curly,
       'dot-notation': ghostPlugin.configs.ts.rules['dot-notation'],
 
-      // Sort multiple import lines into alphabetical groups
-      'ghost/sort-imports-es6-autofix/sort-imports-es6': [
-        'error',
-        {
-          memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'],
-        },
-      ],
+      // LEGACY: eslint-plugin-sort-imports-es6-autofix uses SourceCode#getComments,
+      // which was removed in ESLint 9.
+      'ghost/sort-imports-es6-autofix/sort-imports-es6': 'off',
 
       // Enforce kebab-case (lowercase with hyphens) for all filenames
       'ghost/filenames/match-regex': ['error', '^[a-z0-9.-]+$', false],

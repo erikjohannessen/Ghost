@@ -1286,6 +1286,10 @@ export default class App extends React.Component {
           direct: true,
         },
       };
+    } else if (path === 'atprotoNeedsEmail') {
+      return {
+        page: 'atprotoNeedsEmail',
+      };
     }
 
     return {
