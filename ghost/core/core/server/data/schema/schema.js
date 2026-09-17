@@ -653,6 +653,7 @@ module.exports = {
       unique: true,
       validations: { isEmail: true },
     },
+    atproto_did: { type: 'string', maxlength: 191, nullable: true, unique: true },
     status: {
       type: 'string',
       maxlength: 50,
@@ -683,6 +684,22 @@ module.exports = {
     created_at: { type: 'dateTime', nullable: false },
     updated_at: { type: 'dateTime', nullable: true },
     '@@INDEXES@@': [['email_disabled'], ['created_at', 'id']],
+  },
+  atproto_oauth_states: {
+    id: { type: 'string', maxlength: 64, nullable: false, primary: true },
+    pkce_verifier: { type: 'string', maxlength: 191, nullable: false },
+    dpop_private_key_jwk: { type: 'text', maxlength: 65535, nullable: false },
+    resolved_did: { type: 'string', maxlength: 2048, nullable: false },
+    pds_token_endpoint: { type: 'string', maxlength: 2048, nullable: false },
+    as_issuer: { type: 'string', maxlength: 2048, nullable: false },
+    redirect_url: { type: 'string', maxlength: 2048, nullable: true },
+    email_required: { type: 'boolean', nullable: false, defaultTo: false },
+    expires_at: { type: 'dateTime', nullable: false },
+  },
+  atproto_pending_email: {
+    id: { type: 'string', maxlength: 64, nullable: false, primary: true },
+    verified_did: { type: 'string', maxlength: 2048, nullable: false },
+    expires_at: { type: 'dateTime', nullable: false },
   },
   // NOTE: this is the tiers table
   products: {

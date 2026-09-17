@@ -21,6 +21,7 @@ import GiftPage from './components/pages/gift-page';
 import GiftRedemptionPage from './components/pages/gift-redemption-page';
 import GiftSuccessPage from './components/pages/gift-success-page';
 import ShareModal from './components/pages/share/share-modal';
+import AtprotoNeedsEmailPage from './components/pages/atproto-needs-email-page';
 
 /** List of all available pages in Portal, mapped to their UI component
  * Any new page added to portal needs to be mapped here
@@ -49,6 +50,7 @@ const Pages = {
   giftRedemption: GiftRedemptionPage,
   giftSuccess: GiftSuccessPage,
   share: ShareModal,
+  atprotoNeedsEmail: AtprotoNeedsEmailPage,
 };
 
 export const getPages = function () {

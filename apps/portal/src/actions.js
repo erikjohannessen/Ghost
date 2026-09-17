@@ -171,6 +171,34 @@ async function signin({ data, api, state }) {
   }
 }
 
+/**
+ * Redirect the browser to the Ghost ATProto authorize endpoint.
+ * The full OAuth round-trip is handled server-side; Portal re-initialises
+ * normally after the callback sets the session cookie.
+ */
+function signinWithAtproto({ data, state }) {
+  const handle = (data?.handle || '').trim();
+  if (!handle) {
+    return { action: 'signinWithAtproto:failed' };
+  }
+
+  try {
+    const siteUrl = new URL(state?.site?.url || window.location.href);
+    // Validate redirect is same-origin before passing it
+    const redirect =
+      siteUrl.origin === new URL(window.location.href).origin ? window.location.href : siteUrl.href;
+
+    const authorizeUrl = new URL(`${siteUrl.origin}/members/atproto/authorize`);
+    authorizeUrl.searchParams.set('handle', handle);
+    authorizeUrl.searchParams.set('redirect', redirect);
+
+    window.location.href = authorizeUrl.toString();
+  } catch (e) {
+    return { action: 'signinWithAtproto:failed' };
+  }
+  return { action: 'signinWithAtproto:running' };
+}
+
 function startSigninOTCFromCustomForm({ data, state }) {
   const email = (data?.email || '').trim();
   const otcRef = data?.otcRef;
@@ -1013,6 +1041,7 @@ const Actions = {
   back,
   signout,
   signin,
+  signinWithAtproto,
   startSigninOTCFromCustomForm,
   verifyOTC,
   signup,
