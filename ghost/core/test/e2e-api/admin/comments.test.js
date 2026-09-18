@@ -687,6 +687,7 @@ describe(`Admin Comments API`, function () {
           uuid: anyUuid,
           name: nullable(anyString),
           avatar_image: nullable(anyString),
+          atproto_did: nullable(anyString),
         },
         count: {
           likes: anyNumber,
@@ -2306,6 +2307,7 @@ describe(`Admin Comments API`, function () {
         transient_id: anyString,
         last_seen_at: nullable(anyISODateTime),
         last_commented_at: nullable(anyISODateTime),
+        atproto_did: nullable(anyString),
       },
     };
 
@@ -2435,6 +2437,7 @@ describe(`Admin Comments API`, function () {
         transient_id: anyString,
         last_seen_at: nullable(anyISODateTime),
         last_commented_at: nullable(anyISODateTime),
+        atproto_did: nullable(anyString),
       },
     };
 
@@ -2664,6 +2667,7 @@ describe(`Admin Comments API`, function () {
         transient_id: anyString,
         last_seen_at: nullable(anyISODateTime),
         last_commented_at: nullable(anyISODateTime),
+        atproto_did: nullable(anyString),
       },
     };
 
